@@ -13,12 +13,12 @@ tableData.forEach((ufo) => {
 });
 
 // grab references to the input element and the output div
-var datetime = d3.select("#datetime");
+var form = d3.select("#form");
 var button = d3.select("#filter-btn");
 
 // Create event handlers for clicking the button or pressing the enter key
 button.on("click", runEnter);
-datetime.on("submit",runEnter);
+form.on("submit",runEnter);
 
 // Create the function to run for both events
 function runEnter() {
@@ -34,34 +34,11 @@ function runEnter() {
 
   // Print the value to the console
   console.log(inputValue);
+  console.log(tableData);
+
+  var filteredData = tableData.filter(ufo => ufo.datetime == inputValue);
+
+  console.log(filteredData);
 }
 
-// Function to filter data
-function filterData(ufo) {
-  // return table data with matching date;
-  return ufo.date == inputValue;
-}
-
-
-// // Function to handle input change
-// function handleChange(event) {
-//   // grab the value of the input field
-//   //var inputDate = d3.event.target.value;
-//   console.log("handleChange: ",inputDate);
-
-//   // filter on date
-//   var filteredData = tableData.filter(ufo => ufo.date == inputDate);
-//   //console.log(filteredData);
-
-//   // Set the output text to the reversed input string
-// //   output.text(reversedInput);
-// }
-
-// datetime.on("change", function() {
-//     var inputDate = d3.event.target.value;
-//     console.log("date field: ",inputDate);
-//   });
-
-// //datetime.on("change", handleChange);
-// button.on("click", handleChange);
 
