@@ -4,6 +4,8 @@ var tableData = data;
 // YOUR CODE HERE!
 var tbody = d3.select("tbody");
 
+console.log(tbody)
+
 tableData.forEach((ufo) => {
   var row = tbody.append("tr");
   Object.entries(ufo).forEach(([key, value]) => {
@@ -12,6 +14,7 @@ tableData.forEach((ufo) => {
   });
 });
 
+console.log(tbody)
 // grab references to the input element and the output div
 var form = d3.select("#form");
 var button = d3.select("#filter-btn");
@@ -29,16 +32,26 @@ function runEnter() {
   // Select the input element and get the raw HTML node
   var inputElement = d3.select("#datetime");
 
-  // Get the value property of the input element
+  // Get the value property of the input element (i.e., the date)
   var inputValue = inputElement.property("value");
 
   // Print the value to the console
   console.log(inputValue);
-  console.log(tableData);
+  //console.log(tableData);
 
+  //filter by date in input field
   var filteredData = tableData.filter(ufo => ufo.datetime == inputValue);
 
   console.log(filteredData);
+
+  tbody.html("");
+  filteredData.forEach((ufo) => {
+    var row = tbody.append("tr");
+    Object.entries(ufo).forEach(([key, value]) => {
+      var cell = row.append("td");
+      cell.text(value);
+    });
+  });
 }
 
 
